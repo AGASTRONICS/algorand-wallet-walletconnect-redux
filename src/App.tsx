@@ -18,11 +18,11 @@ const App: React.FC = () => {
       <div className="site-layout">
         <SiteHeader/>
         <SiteBody/>
-        <div className="footer">Made with 💖 by <a
-            href="https://github.com/fionnachan"
+        <div className="footer">ChoiceCoin: Fast and Relieable <a
+            href="#"
             target="_blank"
             rel="noreferrer"
-          >@fionnachan</a>
+          >@Algorand</a>
         </div>
         <Dialog
           isShown={isModalOpen}
@@ -31,8 +31,16 @@ const App: React.FC = () => {
           onCloseComplete={() => dispatch(setIsModalOpen(false))}
         >
           <Button className="wallet-button" onClick={() => dispatch(walletConnectInit())}>
-            <img className="wallet-icon" src={algowallet} alt="Algorand wallet"/>
+            <img className="wallet-icon"/>
             <span>Algorand Wallet</span>
+          </Button>
+          <Button className="wallet-button" onClick={() => dispatch(walletConnectInit())}>
+            <img className="wallet-icon"/>
+            <span>myAlgo Wallet</span>
+          </Button>
+          <Button className="wallet-button" onClick={() => dispatch(walletConnectInit())}>
+            <img className="wallet-icon"/>
+            <span>AlgoSigner</span>
           </Button>
         </Dialog>
       </div>

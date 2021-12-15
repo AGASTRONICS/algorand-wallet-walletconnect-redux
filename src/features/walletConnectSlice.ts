@@ -30,6 +30,9 @@ export const getAccountAssets = createAsyncThunk("walletConnect/getAccountAssets
   return response;
 })
 
+localStorage.setItem("wt" , "walletConnect");
+localStorage.setItem("t" , "0");
+
 export const walletConnectSlice = createSlice({
     name: 'walletConnect',
     initialState,
@@ -68,6 +71,7 @@ export const walletConnectSlice = createSlice({
       onSessionUpdate: (state, action) => {
         state.accounts = action.payload;
         state.address = action.payload[0];
+
       },
       setAccountAssets: (state, action) => {
         state.assets = action.payload;

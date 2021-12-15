@@ -17,8 +17,8 @@ const AccountAssets = (props: { assets: IAssetData[] }) => {
   const tokens = assets.filter((asset: IAssetData) => asset && asset.id !== 0);
 
   return (
-    <div>
-      <h2>Account Balance</h2>
+    <div className="bv">
+      <h2>Accounts</h2>
       <AssetRow key={nativeCurrency.id} asset={nativeCurrency} />
       {tokens.map(token => (
         <AssetRow key={token.id} asset={token} />

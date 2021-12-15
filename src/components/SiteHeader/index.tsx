@@ -16,6 +16,9 @@ const SiteHeader: React.FC = () => {
   const assets = useSelector(selectAssets);
   const address = useSelector(selectAddress);
   const chain = useSelector(selectChain);
+
+  
+
   let nativeCurrency = assets && assets.find((asset: IAssetData) => asset && asset.id === 0);
   if (nativeCurrency === undefined || nativeCurrency == null) {
     nativeCurrency = {
@@ -30,7 +33,7 @@ const SiteHeader: React.FC = () => {
   }
 
   const dispatch = useDispatch();
-
+  var total = ""
   useEffect(() => {
     if (window.localStorage.getItem("walletconnect") != null) {
       dispatch(walletConnectInit());
@@ -40,6 +43,7 @@ const SiteHeader: React.FC = () => {
   useEffect(() => {
     if (connected) {
       dispatch(setIsModalOpen(false));
+      const total = window.localStorage.getItem("total")
     }
   }, [connected]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -105,7 +109,7 @@ const SiteHeader: React.FC = () => {
     <div className="site-layout-background site-header">
       <div className="site-header-inner">
         <div>
-          <span>Connected to </span>
+          <span> DevOpt </span>
           <Select
             defaultValue={ChainType.TestNet}
             onChange={event => dispatch(switchChain((event.target as HTMLSelectElement).value))}
@@ -118,6 +122,7 @@ const SiteHeader: React.FC = () => {
             </option>
           </Select>
         </div>
+        <span className="header-notify">{window.localStorage.getItem("t")} choice Coin has been trans</span>
         {!address ?
           <Button onClick={() => dispatch(setIsModalOpen(true))}>
             {"Connect Wallet"}
@@ -126,7 +131,7 @@ const SiteHeader: React.FC = () => {
             {loading ? null : <span>
               {formatBigNumWithDecimals(nativeCurrency.amount, nativeCurrency.decimals)} {nativeCurrency.unitName || "units"}
             </span>}
-            <span className="header-account">{ellipseAddress(address)}</span>
+            <span className="header-account">{address}</span>
             <Button
               className="disconnect-button"
               onClick={() => dispatch(killSession())}
